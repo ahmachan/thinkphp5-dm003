@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-midnightblue">
+            <div class="panel-heading"><h4>权限修改</h4></div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="name">权限名称:</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="name"  value="{$model.name}" id="name" required="required" placeholder="请输入权限名称" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="desc">权限描述:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入权限描述"  value="{$model.desc}" required="required" name="desc" class="form-control" id="desc"/>
+                    		</div>
+                    </div>
+                    <table class="table table-bordered ">
+		                <thead>
+		                    <tr>
+		                        <th class="text-center" width="20%">第一级菜单</th>
+		                        <th class="text-center"  width="30%">第二级菜单</th>
+		                        <th class="text-center"  width="40%">第三级菜单</th>
+		                    </tr>
+		                </thead>
+            		</table>
+            		
+            		 <table class="table table-bordered ">
+		                <tbody>
+		                	{foreach name="menus" item="v" key="k"}
+			                	<tr>
+			                        <td class="text-center" width="20%"><a href="javascript:;" class="btn btn-default-alt menu-btn menu-btn-1" data-code="{$k}">{$v.name}</a></td>
+			                        <td class="text-center" width="70%">
+			                        	<table class="table table-bordered" style="background-color: white">
+			                        		<tbody>
+			                        			{foreach name="v.childs" item="vv" key="kk"}
+			                        				<tr>
+				                        				<td  class="text-center" width="30%"><a href="javascript:;" class="btn btn-default-alt menu-btn menu-btn-2" data-code="{$kk}">{$vv.name}</a></td>
+				                        				<td  class="text-center" width="40%">
+				                        					{volist name="vv.childs" id="vvv"}
+				                        							{notempty  name="key"}
+				                        								<a href="javascript:;" class="btn btn-default-alt menu-btn menu-btn-3" data-code="{$key}">{$vvv.name}</a>
+				                        							{/notempty}
+				                        					{/volist}
+				                        				</td>
+				                        			</tr>
+			                        			{/foreach}
+			                        		</tbody>
+			                        	</table>
+			                        </th>
+			                    </tr>	
+		                	{/foreach}
+		                </tbody>
+            		</table>
+            		
+            		<input type="hidden" name="pool_1" value="{$model.pool_1}" id="pool_1" />
+            		<input type="hidden" name="pool_2" value="{$model.pool_2}" id="pool_2" />
+            		<input type="hidden" name="pool_3" value="{$model.pool_3}" id="pool_3" />
+            		<input type="hidden" name="id" value="{$model.id}" id="id" />
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            <button class="btn-primary btn" id="form-submit">提交</button>
+                            <button class="btn-default btn" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='{$Think.ADMIN_VIEW}auth_group/edit.js'></script>

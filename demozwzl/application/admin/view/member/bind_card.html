@@ -1,0 +1,112 @@
+<div class="row" >
+    <div class="col-xs-12">
+        <div class="panel panel-midnightblue">
+            <div class="panel-body">
+                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                	<div class="row">
+                		 <div class="form-group">
+                    		<label class="col-sm-3 control-label" >绑定卡号:</label>
+                    		<div class="col-sm-5">
+                    			<input type="text"   placeholder="请将卡放到读卡器上" data-minlength="5"   required="required"  name="card_no" class="form-control" id="bind_card_no" value="{$model.card_no}" />
+                    		</div>
+                    		<div class="col-sm-1">
+                    			<div class="btn btn-danger" onclick="read_card_btn('#bind_card_no')">读卡</div>
+                    		</div>
+                    		<div class="col-sm-1">
+                    			 <div class="btn-primary btn" id="form-submit">提交</div>
+                    		</div>
+                    		<div class="col-sm-1">
+                    			 <div class="btn-default btn" data-dismiss="modal">关闭</div>
+                    		</div>
+                   		 </div>
+                	</div>
+                	
+                    <div class="form-group" id="free_finger_div">
+                    	 <div class="form-group">
+	                    		<label class="col-sm-3 control-label" >开启免指纹:</label>
+	                    		<div class="col-sm-5">
+	                    			<select class="form-control" name="free_finger" id="free_finger">
+	                    				<option value="0">不开启</option>
+	                    				<option value="1">开启</option>
+	                    			</select>
+	                    		</div>
+	                    </div>
+                    		<div class="col-sm-4">
+                    			<div  class="col-sm-8 col-sm-offset-3" style="height: 150px;background-color:oldlace">
+                    				<img id="finger_image1" style="height: 150px;width: 100%;" src="/data/finger/a8.jpg" />
+                    			</div>
+                    			<div id="finger1" class="col-sm-8 col-sm-offset-3 btn btn-lg btn-danger">录入指纹</div>
+                    		</div>
+                    		<div class="col-sm-4">
+                    			<div class="col-sm-8 col-sm-offset-3" style="height: 150px;background-color: oldlace;">
+                    				<img id="finger_image2" style="height: 150px;width: 100%;" src="/data/finger/a8.jpg" />
+                    			</div>
+                    			<div id="finger2"  class="col-sm-8 col-sm-offset-3 btn btn-lg btn-danger">确认指纹</div>
+                    		</div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-3 control-label" for="name">会员姓名:</label>
+                        <div class="col-sm-6">
+                            <input type="text"  placeholder="会员姓名" disabled value="{$model.name}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >会员电话:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="会员电话" disabled value="{$model.mobile}" class="form-control">
+                    		</div>
+                    	</div>
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >会员编号:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="会员编号" disabled value="{$model.id_number}" class="form-control">
+                    		</div>
+                    </div>	
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >有效期开始:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="有效期开始" disabled value="{$model.start_date}" class="form-control">
+                    		</div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >有效期结束:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="有效期结束" disabled value="{$model.effect_date}" class="form-control">
+                    		</div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >卡类型:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="卡类型" disabled value="{$model.in_varifycation}" id="in_varifycation" class="form-control">
+                    		</div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >剩余次数:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="剩余次数" disabled value="{$model.surplus}" class="form-control">
+                    		</div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                    		<label class="col-sm-3 control-label" >会员状态:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text"  placeholder="会员状态" disabled value="{$model.status}" class="form-control">
+                    		</div>
+                    </div>
+                    <input type="hidden" value="{$model.card_no}" name="old_card_no" id="old_card_no" />
+                    <input type="hidden" value="{$model.id}" name="id" />
+                    <input type="hidden" value="{$model.fingerprint}"  id="fingerprint" name="fingerprint"/>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='{$Think.ADMIN_VIEW}member/bind_card.js'></script>

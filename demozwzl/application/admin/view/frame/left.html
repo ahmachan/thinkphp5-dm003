@@ -1,0 +1,48 @@
+<div id="page-container">
+<!-- BEGIN SIDEBAR -->
+<nav id="page-leftbar" role="navigation">
+                <!-- BEGIN SIDEBAR MENU -->
+            <ul class="acc-menu" id="sidebar">
+                <li class="divider"></li>
+                <li><a href="index"><i class="fa fa-home"></i> <span>首页</span></a></li>
+                
+                {foreach name="menus" id="v" key="k"}
+					<li><a id="{$k}" class="menu_1" href="javascript:;"><i class="fa {$v.class}"></i> <span>{$v.name}</span> </a>
+	                    <ul class="acc-menu">
+	                    	{foreach name="v.childs" id="vv" key="kk"}
+	                    		<li><a id="{$kk}" href="javascript:;" data-url="{$vv.url}" data-code="{$kk}" class="menu_2"><span>{$vv.name}</span></a></li>	
+	                    	{/foreach}
+	                    </ul>
+                	</li>                	
+                {/foreach}
+            </ul>
+            <!-- END SIDEBAR MENU -->
+        </nav>
+     <!-- BEGIN RIGHTBAR -->    
+<div id="page-content">
+    <div id='wrap'>
+        <!--<div id="page-heading">
+            <ol class="breadcrumb">
+                <li><a href="index.htm">xx</a></li>
+                <li><a href="index.htm">xx1</a></li>
+                <li class='active'><a href="index.htm">xx2</a></li>
+            </ol>
+        </div>-->
+	
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalTitle" >标题</h4>
+			</div>
+			<div class="modal-body" id="myModalBody" >
+					<h1>	body</h1>
+			</div>
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+
+<div class="container" id="my_container">

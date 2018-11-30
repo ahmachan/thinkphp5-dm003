@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script> 
+<body>
+	<style>
+	body{
+			color:#333;	}
+			h1{
+		margin-top:10%;}
+		input{
+			padding-left:10px;
+			border:solid 1px #aaa;
+			border-radius:4px;
+			background:white;
+			line-height:40px;
+			font-size:24px;
+		}
+		button{
+			border:solid 1px #aaa;
+			border-radius:4px;
+			background:white;
+			margin-top:20px;
+			
+			line-height:30px;
+			font-size:20px;
+			padding:5px 30px;
+		}
+		button:hover{
+			cursor:pointer;
+			color:white;
+			background:#1591FA;
+		}
+		/*iframe{
+		display:none;
+		width:0px;height:0px;}*/
+	</style>
+<center>
+<h1>
+员工制卡
+</h1>
+	<!--<iframe id="link" ></iframe>-->
+	<input id="cardno"  required="required" type="number" placeholder="请输入卡号" /><br/>
+	<button onclick="addcard()">制 卡</button>
+	<button onclick="search()">查询</button>
+	<button onclick="statistic()">卡务统计</button>
+	<button onclick="statistic1()">当天人流量统计</button>
+	
+</center>
+<script>
+	var cardno = document.getElementById("cardno");
+	var link = document.getElementById("link");
+	function addcard(){
+	       
+		var z= /^[0-9]*$/;
+		if(z.test(cardno.value)){
+		}else{
+			alert("请输入数字");
+			return false;
+		}
+		if(cardno.value.length>10){
+			alert("卡号不能超过10位");
+			return false;
+		}
+		$.post(
+			"/api/Card/add_member_card",
+			{"card_nos":cardno.value},
+			function(data){
+				if(data.flag){
+					alert("成功");
+				}else{
+					alert("失败");
+				}
+			}
+		);
+	}
+	
+	function search(){
+		var z= /^[0-9]*$/;
+		if(z.test(cardno.value)){
+		}else{
+			alert("请输入数字");
+			return false;
+		}
+		if(cardno.value.length>10){
+			alert("卡号不能超过10位");
+			return false;
+		}
+		
+		$.post(
+			"/api/Card/search",
+			{"card_nos":cardno.value},
+			function(data){
+				if(data.flag){
+					alert(data.data);
+				}else{
+					alert("失败");
+				}
+			}
+		);
+	}
+	function statistic(){
+	$.post(
+		"/api/Card/statistic",
+				function(data){
+			if(data.flag){
+				alert(data.data);
+			}else{
+				alert("失败");
+			}
+		}
+	);
+}
+	/*人流量统计*/
+	function statistic1(){
+		$.post(
+			"/api/Card/statistic1",
+			function(data){
+				if(data.flag){
+					alert(data.data);
+				}else{
+					alert("失败");
+				}
+			}
+		);
+	}
+	
+</script>
+</body>
+</html>

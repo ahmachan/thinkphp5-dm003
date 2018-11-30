@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-midnightblue">
+            <div class="panel-heading"><h4>制卡</h4></div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="type">请选择卡类型:</label>
+                        <div class="col-sm-6">
+                       		<select disabled class="form-control" >
+                       			<option value="1">临时卡</option>
+                       			<option value="2" {$selected}>查询卡</option>
+                       		</select> 	
+                       		<input type="hidden" name="type"  id="type" value=""/>
+                        </div>
+                    </div>
+                     <div class="form-group" >
+                    		<label class="col-sm-3 control-label" for="card_no">卡号:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="卡号"  data-minlength="5"   required="required" name="card_no" class="form-control" id="card_no" value="{$card_no}"/>
+                    		</div>
+                    		<div class="col-sm-1">
+                    			<div class="btn btn-danger" id="read_card">读卡</div>
+                    		</div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            <button class="btn-primary btn" id="form-submit">提交</button>
+                            <button class="btn-default btn" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='{$Think.ADMIN_VIEW}temp/add.js'></script>

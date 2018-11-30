@@ -1,0 +1,57 @@
+<div class="row">
+	
+	       <div class="col-sm-12">
+	       	  <p class="menu_buttons">
+	       	  	{foreach name="menus" key="k" item="v"}
+	       	  			<button data-url="{$v.url}" class="menu_3 btn {$v.class}"><i class="fa {$v.icon}"></i><span class="bold">&nbsp;&nbsp;{$v.name}</span></button>
+	       	  	{/foreach}
+	       	  </p>
+					</div>
+					<div class="col-sm-12 scorll">
+				<div class="ibox-content no-borders m-t-b-10" >
+							<form class="form-inline m-t" role="form" id="myform">
+								<div class="form-group p-b-xxs">
+						                    <input type="text" placeholder="卡号" value="" id="card_no"  class="form-control">
+						        </div>
+						        <div class="form-group p-b-xxs">
+						        	<select class="form-control" name="surplus" id="surplus">
+						        		<option value="(0,1)">请选择是否使用</option>
+						        		<option value="(0)">已使用</option>
+						        		<option value="(1)">未使用</option>
+						        	</select>
+						        </div>
+						        <div class="form-group p-b-xxs">
+						        	<input type="hidden" value="" id="excel_param" />
+						                <button class="btn btn-primary" id="btn-advanced-search" type="button"><i class="fa fa-search-plus"></i>查询</button>
+						        </div>
+						          <div class="form-group p-b-xxs"><button id="btn-advanced-refresh" class="btn btn-primary" type="button"><i class="fa fa-refresh"></i> 刷新</button></div>
+						          <div class="form-group p-b-xxs"><button onclick="read_card_btn('#card_no')" class="btn btn-info" type="button"><i class="fa  fa-search-plus"></i> 读卡</button></div>
+							</form>
+						</div>
+              <div class="ibox float-e-margins" id="div-table-container">
+                            <div class="ibox-content no-borders">
+                                <table class="table table-striped table-bordered table-hover dataTables-example" id="data-table">
+                                    <thead>
+                                        <tr>
+                                        	<th width="3%"><input type="checkbox" value="1"  class="selecte_all" /></th>
+                                            <th width="10%">卡号</th>
+                                            <th width="10%">是否使用</th>
+                                            <th width="10%">创建时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    	<tr>
+                                        	<th width="3%"><input type="checkbox" value="1"  class="selecte_all" /></th>
+                                            <th width="10%">卡号</th>
+                                            <th width="10%">是否使用</th>
+                                            <th width="10%">创建时间</th>
+                                   		</tr>
+									</tfoot>
+                                </table>
+                            </div>
+                        </div>
+            </div>
+        </div>
+         <script type='text/javascript' src='{$Think.ADMIN_VIEW}temp/index.js'></script>

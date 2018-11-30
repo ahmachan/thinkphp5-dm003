@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-midnightblue">
+            <div class="panel-heading"><h4>会员新增</h4></div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="name">姓名:</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="name" id="name" required="required" placeholder="请输入姓名" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="nick_name">昵称:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入昵称" required="required" name="nick_name" class="form-control" id="nick_name" value=""/>
+                    		</div>
+                    	</div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="mobile">手机:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入手机"  data-minlength="11" data-maxlength="11"  required="required"  name="mobile" class="form-control" id="mobile" value="" />
+                    		</div>
+                    </div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="open_id">open_id:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入open_id" required="required" name="open_id" class="form-control" id="open_id" value="" />
+                    		</div>
+                    </div>
+                    <div class="form-group">
+                    	<label class="col-sm-3 control-label" for="age">年龄:</label>
+                    	<div class="col-sm-6">
+                    		<input type="text" placeholder="请输入年龄" data-range="[0,120]" data-type="alphanum" class="form-control" name="age" id="age"  />
+                    	</div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            <button class="btn-primary btn" id="form-submit">提交</button>
+                            <button class="btn-default btn" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='{$Think.ADMIN_VIEW}user/add.js'></script>

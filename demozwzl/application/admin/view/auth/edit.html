@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-midnightblue">
+            <div class="panel-heading"><h4>权限修改</h4></div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                    <div class="form-group">
+                    	<label class="col-sm-3 control-label" for="account">选择权限:</label>
+                        <div class="col-sm-6">
+                        	<select class="form-control" name="auth_group_id">
+	                        	{foreach item="v" name="groups"}
+	                            	<option value="{$v.id}">{$v.name}</option>	
+	                            {/foreach}
+                        	</select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="account">账号:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入账号" disabled="disabled" required="required" name="account" class="form-control" id="account" value="{$model.account}"/>
+                    		</div>
+                    </div>
+                    <input type="hidden" name="id" value="{$model.id}" />
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            <button class="btn-primary btn" id="form-submit">提交</button>
+                            <button class="btn-default btn" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='{$Think.ADMIN_VIEW}auth/edit.js'></script>

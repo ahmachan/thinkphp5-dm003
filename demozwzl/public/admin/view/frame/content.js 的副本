@@ -1,0 +1,229 @@
+jQuery(document).ready(function() {
+
+
+
+    try {
+    //Easy Pie Chart
+    $('.easypiechart#returningvisits').easyPieChart({
+        barColor: "#85c744",
+        trackColor: '#edeef0',
+        scaleColor: '#d2d3d6',
+        scaleLength: 5,
+        lineCap: 'square',
+        lineWidth: 2,
+        size: 90,
+        onStep: function(from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+        }
+    });
+
+    $('.easypiechart#newvisitor').easyPieChart({
+        barColor: "#f39c12",
+        trackColor: '#edeef0',
+        scaleColor: '#d2d3d6',
+        scaleLength: 5,
+        lineCap: 'square',
+        lineWidth: 2,
+        size: 90,
+        onStep: function(from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+        }
+    });
+
+    $('.easypiechart#clickrate').easyPieChart({
+        barColor: "#e73c3c",
+        trackColor: '#edeef0',
+        scaleColor: '#d2d3d6',
+        scaleLength: 5,
+        lineCap: 'square',
+        lineWidth: 2,
+        size: 90,
+        onStep: function(from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+        }
+    });
+
+    $('#updatePieCharts').on('click', function() {
+    	$.post(
+    		"/admin/frame/get_sex_info",
+    		function($data){
+    			 $('.easypiechart#returningvisits').data('easyPieChart').update($data[1]['rate']);
+        		 $('.easypiechart#newvisitor').data('easyPieChart').update($data[2]['rate']);
+      			 $('.easypiechart#clickrate').data('easyPieChart').update($data[0]['rate']);
+      			 $('#sex_1').text($data[2]['count']);
+      			 $('#sex_2').text($data[1]['count']);
+      			 $('#sex_0').text($data[0]['count']);
+    		},
+    		"json"
+    	);
+        return false;
+    });
+     $('#updatePieCharts').trigger("click");
+    }
+    
+    catch(e) {}
+
+    //Flot
+
+    function randValue() {
+        return (Math.floor(Math.random() * (2)));
+    }
+	
+	  var viewcount = [
+        [1, 787 ],
+        [2, 740 ],
+        [3, 560 ],
+        [4, 860 ],
+        [5, 750 ],
+        [6, 910 ],
+        [7, 730 ]
+    ];
+	$.post(
+		"/admin/frame/get_register_info",
+		function($data){
+    		plot_statistics($data);
+   		},
+    	"json"
+	);
+	function plot_statistics(viewcount){
+		$.plot($("#site-statistics"), [{
+        data: viewcount,
+        label: "本周"
+    }], {
+        series: {
+            lines: {
+                show: true,
+                lineWidth: 1.5,
+                fill: 0.05
+            },
+            points: {
+                show: true
+            },
+            shadowSize: 0
+        },
+        grid: {
+            labelMargin: 10,
+            hoverable: true,
+            clickable: true,
+            borderWidth: 0
+        },
+        colors: ["#a6b0c2"],
+        xaxis: {
+            tickColor: "transparent",
+            ticks: [[1, "周一"], [2, "周二"], [3, "周三"], [4, "周四"], [5, "周五"], [6, "周六"], [7, "周天"]],
+            tickDecimals: 0,
+            autoscaleMargin: 0,
+            font: {
+                color: '#8c8c8c',
+                size: 12
+            }
+        },
+        yaxis: {
+            ticks: 4,
+            tickDecimals: 0,
+            tickColor: "#e3e4e6",
+            font: {
+                color: '#8c8c8c',
+                size: 12
+            },
+            tickFormatter: function (val, axis) {
+                if (val>999) {return (val/1000) + "K";} else {return val;}
+            }
+        },
+        legend : {
+            labelBoxBorderColor: 'transparent'
+        }
+    });
+	}
+
+    var d1 = [
+        [1, 29 + randValue()],
+        [2, 62 + randValue()],
+        [3, 52 + randValue()],
+        [4, 41 + randValue()]
+    ];
+    var d2 = [
+        [1, 36 + randValue()],
+        [2, 79 + randValue()],
+        [3, 66 + randValue()],
+        [4, 24 + randValue()]
+    ];
+
+    for (var i = 1; i < 5; i++) {
+        d1.push([i, parseInt(Math.random() * 1)]);
+        d2.push([i, parseInt(Math.random() * 1)]);
+    }
+ 
+
+    var previousPoint = null;
+        $("#site-statistics").bind("plothover", function (event, pos, item) {
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+        if (item) {
+            if (previousPoint != item.dataIndex) {
+                previousPoint = item.dataIndex;
+
+                $("#tooltip").remove();
+                var x = item.datapoint[0].toFixed(2),
+                    y = item.datapoint[1].toFixed(2);
+
+                showTooltip(item.pageX, item.pageY-7, item.series.label + ": " + Math.round(y));
+
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
+    });
+
+    var previousPointBar = null;
+
+
+
+    function showTooltip(x, y, contents) {
+        $('<div id="tooltip" class="tooltip top in"><div class="tooltip-inner">' + contents + '<\/div><\/div>').css({
+            display: 'none',
+            top: y - 40,
+            left: x - 55,
+        }).appendTo("body").fadeIn(200);
+    }
+
+
+
+    var container = $("#server-load");
+
+    // Determine how many data points to keep based on the placeholder's initial size;
+    // this gives us a nice high-res plot while avoiding more than one point per pixel.
+
+    var maximum = container.outerWidth() / 2 || 300;
+    var data = [];
+
+    function getRandomData() {
+
+        if (data.length) {
+            data = data.slice(1);
+        }
+
+        while (data.length < maximum) {
+            var previous = data.length ? data[data.length - 1] : 50;
+            var y = previous + Math.random() * 10 - 5;
+            data.push(y < 0 ? 0 : y > 100 ? 100 : y);
+        }
+
+        // zip the generated y values with the x values
+        var res = [];
+        for (var i = 0; i < data.length; ++i) {
+            res.push([i, data[i]])
+        }
+        return res;
+    }
+
+    //
+
+    series = [{
+        data: getRandomData()
+    }];
+
+
+});
+

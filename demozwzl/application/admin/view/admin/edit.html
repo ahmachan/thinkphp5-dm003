@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-midnightblue">
+            <div class="panel-heading"><h4>员工修改</h4></div>
+            <div class="panel-body">
+                <form action="" class="form-horizontal row-border"  data-validate="parsley" id="validate-form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="name">姓名:</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="name" id="name" required="required" placeholder="请输入姓名" required="required" class="form-control" value="{$model.name}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="account">账号:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入账号" disabled="disabled" required="required" name="account" class="form-control" id="account" value="{$model.account}"/>
+                    		</div>
+                    	</div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="mobile">手机:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入手机"  data-minlength="11" data-maxlength="11"  required="required"  name="mobile" class="form-control" id="mobile" value="{$model.mobile}" />
+                    		</div>
+                    </div>
+                    <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="email">邮箱:</label>
+                    		<div class="col-sm-6">
+                    			<input type="text" placeholder="请输入email" data-type="email" required="required" name="email" class="form-control" id="email" value="{$model.email}" />
+                    		</div>
+                    </div>
+                    <input type="hidden" value="{$model.id}" name="id" id="id" />
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            <button class="btn-primary btn" id="form-submit">提交</button>
+                            <button class="btn-default btn" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='{$Think.ADMIN_VIEW}admin/edit.js'></script>
